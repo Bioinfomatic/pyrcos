@@ -10,5 +10,5 @@ grid_color     = {{ grid_color }}
 grid_thickness = {{ grid_thickness }}
 
 {% for radius in radii %}
-radius = {{ radius }}r {% endif %}
+radius = {{ radius }} {% endfor %}
 </tick>

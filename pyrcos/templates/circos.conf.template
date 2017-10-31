@@ -14,9 +14,13 @@ karyotype = {{ karyotypes|join(',', attribute='filename')}}
 {% endif %}
 
 {% if ticks|length > 0 %}
-<ticks>
 show_ticks = True
 show_tick_labels = {{ ticks.show_label }}
+<ticks>
+multiplier       = 1/1u
+thickness        = {{ ticks.thickness }}
+tick_separation  = 2p
+label_separation = 4p
 {% for tick in ticks %}
 {{ tick.configuration }}
 {% endfor %}

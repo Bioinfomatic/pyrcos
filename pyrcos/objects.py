@@ -115,6 +115,10 @@ class Karyotype(object):
                     rows.append(KaryotypeChromosome.parse(line))
                 else:
                     rows.append(KaryotypeBand.parse(line))
+        if hasattr(self,'rows') and type(self.rows) is list:
+            self.rows.extend(rows)
+        else:
+            self.rows=rows
 
 
 class Circos(CircosObject):
@@ -218,12 +222,19 @@ class Link(CircosObjectWithFile):
 
 class Rules(object):
     def __init__(self, rules=None):
-        if isinstance(rules, Rules):
+        if rules is None:
+           rules=[]
+        elif isinstance(rules, Rules):
             rules = rules.rules
-        self.rules = [] if rules is None else rules
+        elif isinstance(rules, Rule):
+            rules = [ rules ]
+        self.rules = rules
 
     def __len__(self):
         return len(self.rules)
+
+    def __getitem__(self, item):
+        return self.rules[item]
 
 
 class Rule(CircosObject):
@@ -628,9 +639,9 @@ class Ticks(CircosObject):
             ticks = ticks.ticks
         elif isinstance(ticks, Tick):
             ticks = [ticks]
-        self.ticks = ticks
+        self.ticks      = ticks
         self.show_label = show_label
-
+        self.thickness  = '3p'
     def __len__(self):
         return len(self.ticks)
 
