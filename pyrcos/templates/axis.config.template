@@ -3,17 +3,17 @@ y0 = {{ y0 }}
 y1 = {{ y1 }}
 {% if spacing is not none %}
 spacing = {{ spacing }}
-{ %endif} %}
+{% endif %}
 {% if position is not none %}
 position = {{ position }}
-{ %endif} %}
+{% endif %}
 {% if position_skip is not none %}
 position_skip = {{ position_skip }}
-{ %endif} %}
+{% endif %}
 {% if color is not none %}
 color = {{ color }}
-{ %endif} %}
+{% endif %}
 {% if thickness is not none %}
 thickness = {{ thickness }}
-{ %endif} %}
+{% endif %}
 </axis>
