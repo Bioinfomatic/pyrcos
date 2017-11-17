@@ -479,7 +479,7 @@ class Line(Plot):
 
 class Scatter(Plot):
     def __init__(self, file, r0, r1, backgrounds=None, axes=None, rules=None, color=None,
-                 glyph=None, glyph_size=None, stroke_color=None, stroke_thickness=None, orientation=None):
+                 glyph=None, glyph_size=None, stroke_color=None, stroke_thickness=None, orientation=None, **kwds):
         super(Scatter, self).__init__("scatter", file, r0, r1,
                                       backgrounds=backgrounds,
                                       axes=axes,
@@ -489,7 +489,7 @@ class Scatter(Plot):
                                       glyph_size=glyph_size,
                                       stroke_color=stroke_color,
                                       stroke_thickness=stroke_thickness,
-                                      orientation=orientation)
+                                      orientation=orientation, **kwds)
 
     @property
     def glyph(self):
