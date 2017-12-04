@@ -20,7 +20,7 @@ show_tick_labels = {{ ticks.show_label }}
 multiplier       = 1/1u
 thickness        = {{ ticks.thickness }}
 tick_separation  = 2p
-label_separation = 4p
+label_separation = 5p
 {% for tick in ticks %}
 {{ tick.configuration }}
 {% endfor %}

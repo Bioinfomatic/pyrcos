@@ -9,6 +9,12 @@ grid           = {{ "yes" if grid else "no" }}
 grid_color     = {{ grid_color }}
 grid_thickness = {{ grid_thickness }}
 
+#other attributes
+{% for k, v in attributes.iteritems() %}
+{{ k }} = {{ v }}
+{% endfor %}
+
+
 {% for radius in radii %}
 radius = {{ radius }} {% endfor %}
 </tick>

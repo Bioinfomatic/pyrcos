@@ -653,21 +653,23 @@ class Tick(CircosObject):
     __template__ = "tick.config.template"
 
     def __init__(self, size=None, spacing=None, color=None, show_label=True, label_size=None,
-                 format=None, grid=False, grid_color=None, grid_thickness=None, radii=None, radius=None):
+                 format=None, grid=False, grid_color=None, grid_thickness=None, radii=None, radius=None, **kwds):
         super(Tick, self).__init__()
 
-        self.size = size
-        self.spacing = spacing
-        self.color = color
-        self.show_label = show_label
-        self.label_size = label_size
-        self.format = format
-        self.grid = grid
-        self.grid_color = grid_color
+        self.size           = size
+        self.spacing        = spacing
+        self.color          = color
+        self.show_label     = show_label
+        self.label_size     = label_size
+        self.format         = format
+        self.grid           = grid
+        self.grid_color     = grid_color
         self.grid_thickness = grid_thickness
-        self.radii = radii if radii is not None else []
+        self.attributes     = kwds
+        self.radii          = radii if radii is not None else []
         if radii is None and radius is not None:
             self.radii.append(radius)
+
 
 
 class Highlights(object):

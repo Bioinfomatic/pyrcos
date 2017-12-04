@@ -6,6 +6,7 @@ import numpy as np
 
 
 def seq_records_to_karyotype(records, color_map={}):
+    records=list(records)
     assert all([isinstance(r, SeqRecord) for r in records])
     chrs = []
     for i, record in enumerate(records):
@@ -29,4 +30,21 @@ def seq_record_to_tiles(records, feature_types=["gene"]):
         track["start"] = np.array(track["start"], dtype=int)
         track["end"] = np.array(track["end"], dtype=int)
 
+        yield track
+
+def seq_record_to_texts(records, feature_types=["gene"]):
+    for record in records:
+        track = DataFrame(columns=["chromosome", "start", "end", "value", "options"])
+        i = 0
+        for feature in record.features:
+            if feature.type in feature_types:
+                track.loc[i] = (record.id, int(feature.location.start+1),
+                                           int(feature.location.end),
+                                           feature.qualifiers.get(feature.qualifiers.keys()[0], ['unidentified'] )[0], "")
+                i += 1
+
+        track["start"] = np.array(track["start"], dtype=int)
+        track["end"] = np.array(track["end"], dtype=int)
+        track['value']=track['value'].str.replace(' ','_')
+        track['value']=np.where(track['value'].str.len()>8, track['value'].str[:8]+'...', track['value'] )
         yield track
